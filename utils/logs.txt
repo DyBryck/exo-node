@@ -77,3 +77,15 @@
 2025-02-26T08:53:49.156Z - 📌 Article ajouté: {"id":11,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 08:53:49"}
 2025-02-26T08:54:06.786Z - 📌 Article mis à jour: {"id":11,"title":"test","content":"test modifié","user_id":6,"created_at":"2025-02-26 08:53:49"}
 2025-02-26T09:45:56.008Z - 📌 Article mis à jour: {"id":11,"title":"test","content":"test modifié","user_id":6,"created_at":"2025-02-26 08:53:49"}
+2025-02-26T10:30:23.339Z - 📌 Article mis à jour: {"id":11,"title":"test","content":"test modifié","user_id":6,"created_at":"2025-02-26 08:53:49"}
+2025-02-26T10:33:41.093Z - 📌 Article ajouté: {"id":12,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 10:33:41"}
+2025-02-26T10:33:47.494Z - 📌 Article ajouté: {"id":13,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 10:33:47"}
+2025-02-26T10:33:51.765Z - 📌 Article ajouté: {"id":14,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 10:33:51"}
+2025-02-26T10:35:43.162Z - 📌 Article supprimé: {"id":10,"title":"titre","content":"content","user_id":6,"created_at":"2025-02-25 14:32:10"}
+2025-02-26T10:35:47.366Z - 📌 Article supprimé: {"id":11,"title":"test","content":"test modifié","user_id":6,"created_at":"2025-02-26 08:53:49"}
+2025-02-26T10:36:02.157Z - 📌 Article supprimé: {"id":12,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 10:33:41"}
+2025-02-26T10:36:03.969Z - 📌 Article supprimé: {"id":13,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 10:33:47"}
+2025-02-26T10:36:06.737Z - 📌 Article supprimé: {"id":14,"title":"test","content":"test","user_id":6,"created_at":"2025-02-26 10:33:51"}
+2025-02-26T10:40:17.298Z - Utilisateur supprimé: {"id":6,"name":"John","email":"azer@gmail.com","created_at":"2025-02-25 14:32:00"}
+2025-02-26T10:44:04.967Z - Nouvel utilisateur ajouté: {"id":1,"name":"Premier utilisateur","email":"premier@1.com","created_at":"2025-02-26 10:44:04"}
+2025-02-26T10:44:26.847Z - Nouvel utilisateur ajouté: {"id":2,"name":"Deuxième utilisateur","email":"deuxiem@2.com","created_at":"2025-02-26 10:44:26"}

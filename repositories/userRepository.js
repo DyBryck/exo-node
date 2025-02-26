@@ -141,7 +141,7 @@ const userRepository = new UserDatabase("../sql/schema.sqlite");
 
 (async () => {
   try {
-    await userDB.connect();
+    await userRepository.connect();
   } catch (error) {
     console.error("Erreur lors de la connexion initiale :", error);
   }
