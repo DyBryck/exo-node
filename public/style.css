@@ -1,0 +1,40 @@
+#modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#modal-content {
+  background-color: white;
+  height: 50%;
+  width: 50%;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-close-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#modal form textarea {
+  resize: none;
+  height: 80%;
+}

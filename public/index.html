@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Exo HTML Node</title>
+  </head>
+  <body>
+    <main>
+      <div id="modal">
+        <div id="modal-content">
+          <button id="modal-close-btn">X</button>
+          <form id="edit-article-form">
+            <label for="title"></label>
+            <input type="text" name="title" id="modal-title" />
+            <label for="content"></label>
+            <textarea name="content" id="modal-body"></textarea>
+          </form>
+        </div>
+      </div>
+      <form id="send-article-form">
+        Ajouter un article:
+        <label for="title"></label>
+        <input
+          type="text"
+          name="title"
+          placeholder="Titre de l'article"
+          required
+        />
+        <label for="content"></label>
+        <textarea
+          name="content"
+          id=""
+          placeholder="Contenu de l'article"
+          required
+        ></textarea>
+        <input type="submit" value="Ajouter l'article" />
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
