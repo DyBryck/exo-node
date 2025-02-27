@@ -2,15 +2,15 @@ import { appendLog } from "../utils/logger.js";
 import { Repository } from "./repository.js";
 
 export class ArticleRepository extends Repository {
-  async getAll() {
+  async findAll() {
     return await this.db.all("SELECT * FROM articles;");
   }
 
-  async getById(id) {
+  async findById(id) {
     return await this.db.get("SELECT * FROM articles WHERE id = ?", [id]);
   }
 
-  async add(article) {
+  async create(article) {
     const { title, content, user_id } = article;
     const result = await this.db.run(
       "INSERT INTO articles (title, content, user_id) VALUES (?, ?, ?)",
@@ -19,7 +19,7 @@ export class ArticleRepository extends Repository {
     if (!result.lastID) {
       throw new Error("Échec de l'insertion de l'article");
     }
-    const insertedArticle = await this.getById(result.lastID);
+    const insertedArticle = await this.findById(result.lastID);
     appendLog(`📌 Article ajouté: ${JSON.stringify(insertedArticle)}`);
     return insertedArticle;
   }
@@ -33,13 +33,13 @@ export class ArticleRepository extends Repository {
     if (result.changes === 0) {
       throw new Error("Aucun article modifié.");
     }
-    const updatedArticle = await this.getById(id);
+    const updatedArticle = await this.findById(id);
     appendLog(`📌 Article mis à jour: ${JSON.stringify(updatedArticle)}`);
     return updatedArticle;
   }
 
   async delete(id) {
-    const article = await this.getById(id);
+    const article = await this.findById(id);
     if (!article) {
       throw new Error("Article non trouvé.");
     }

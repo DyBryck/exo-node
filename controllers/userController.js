@@ -1,9 +1,27 @@
 import * as userService from "../services/userService.js";
 import { handleRequest } from "../utils/controllerUtils.js";
 
-export const listUsers = async (req, res) =>
+export const findAllUsers = async (req, res) =>
   handleRequest(req, res, async () => {
-    return await userService.listUsers();
+    return await userService.findAllUsers();
+  });
+
+export const findUserById = async (req, res, id) =>
+  handleRequest(req, res, async () => {
+    const userFound = await userService.findUserById(id);
+    return {
+      message: "Utilisateur trouvé:",
+      user: userFound,
+    };
+  });
+
+export const findUserWithArticles = async (req, res, id) =>
+  handleRequest(req, res, async () => {
+    const userWithArticlesFound = await userService.findUserWithArticles(id);
+    return {
+      message: "Utilisateur et ses articles trouvé:",
+      user: userWithArticlesFound,
+    };
   });
 
 export const createUser = async (req, res) =>
@@ -12,24 +30,6 @@ export const createUser = async (req, res) =>
     return {
       message: "Utilisateur crée:",
       user: userCreated,
-    };
-  });
-
-export const getUserById = async (req, res, id) =>
-  handleRequest(req, res, async () => {
-    const userFound = await userService.getUserById(id);
-    return {
-      message: "Utilisateur trouvé:",
-      user: userFound,
-    };
-  });
-
-export const getUserWithArticles = async (req, res, id) =>
-  handleRequest(req, res, async () => {
-    const userWithArticlesFound = await userService.getUserWithArticles(id);
-    return {
-      message: "Utilisateur et ses articles trouvé:",
-      user: userWithArticlesFound,
     };
   });
 

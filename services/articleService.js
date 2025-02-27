@@ -2,12 +2,12 @@ import { articleRepository } from "../sql/database.js";
 import { NotFoundError } from "../utils/errors/customErrors.js";
 import { validateArticle } from "../utils/errors/validations/articleValidation.js";
 
-export const getAllArticles = async () => {
-  return await articleRepository.getAll();
+export const findAllArticles = async () => {
+  return await articleRepository.findAll();
 };
 
-export const getArticleById = async (id) => {
-  const article = await articleRepository.getById(id);
+export const findArticleById = async (id) => {
+  const article = await articleRepository.findById(id);
   if (!article) {
     throw new NotFoundError("Article non trouvé");
   }
@@ -17,7 +17,7 @@ export const getArticleById = async (id) => {
 export const createArticle = async (articleData) => {
   validateArticle(articleData);
 
-  const createdArticle = await articleRepository.add(articleData);
+  const createdArticle = await articleRepository.create(articleData);
   return createdArticle;
 };
 
@@ -32,7 +32,7 @@ export const updateArticle = async (id, articleData) => {
 };
 
 export const deleteArticle = async (id) => {
-  const article = await articleRepository.getById(id);
+  const article = await articleRepository.findById(id);
   if (!article) {
     throw new NotFoundError("Article non trouvé");
   }

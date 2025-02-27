@@ -5,30 +5,30 @@ import {
 } from "../utils/errors/customErrors.js";
 import { validateUser } from "../utils/errors/validations/userValidation.js";
 
-export const listUsers = async () => {
-  return await userRepository.list();
+export const findAllUsers = async () => {
+  return await userRepository.findAll();
+};
+
+export const findUserById = async (id) => {
+  const user = await userRepository.findById(id);
+  if (!user) {
+    throw new NotFoundError("Utilisateur non trouvé");
+  }
+  return user;
+};
+
+export const findUserWithArticles = async (id) => {
+  const user = await userRepository.findByIdWithArticles(id);
+  if (!user) {
+    throw new NotFoundError("Utilisateur non trouvé");
+  }
+  return user;
 };
 
 export const createUser = async (userData) => {
   validateUser(userData);
   const newUser = await userRepository.create(userData);
   return newUser;
-};
-
-export const getUserById = async (id) => {
-  const user = await userRepository.getById(id);
-  if (!user) {
-    throw new NotFoundError("Utilisateur non trouvé");
-  }
-  return user;
-};
-
-export const getUserWithArticles = async (id) => {
-  const user = await userRepository.getUserWithArticles(id);
-  if (!user) {
-    throw new NotFoundError("Utilisateur non trouvé");
-  }
-  return user;
 };
 
 export const updateUser = async (id, updatedData) => {
@@ -43,7 +43,7 @@ export const updateUser = async (id, updatedData) => {
 };
 
 export const deleteUser = async (id) => {
-  const user = await userRepository.getById(id);
+  const user = await userRepository.findById(id);
   if (!user) {
     throw new NotFoundError("Utilisateur non trouvé");
   }
