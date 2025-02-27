@@ -6,31 +6,38 @@ export const getAllArticles = async (req, res) =>
     return await articleService.getAllArticles();
   });
 
-export const getArticleById = async (req, res, id) =>
-  handleRequest(req, res, async () => {
-    return await articleService.getArticleById(id);
+export const addArticle = async (req, res) =>
+  handleRequest(req, res, async (body) => {
+    const articleAdded = await articleService.createArticle(body);
+    return {
+      message: "Article ajouté:",
+      article: articleAdded,
+    };
   });
 
-export const addArticle = async (req, res) =>
-  handleRequest(
-    req,
-    res,
-    async (body) => {
-      return await articleService.createArticle(body);
-    },
-    201,
-  );
+export const getArticleById = async (req, res, id) =>
+  handleRequest(req, res, async () => {
+    const articleFound = await articleService.getArticleById(id);
+    return {
+      message: "Article trouvé:",
+      article: articleFound,
+    };
+  });
 
 export const updateArticle = async (req, res, id) =>
   handleRequest(req, res, async (body) => {
-    return await articleService.updateArticle(id, body);
+    const articleUpdated = await articleService.updateArticle(id, body);
+    return {
+      message: "Article modifié:",
+      article: articleUpdated,
+    };
   });
 
 export const deleteArticle = async (req, res, id) =>
   handleRequest(req, res, async () => {
-    const article = await articleService.deleteArticle(id);
+    const articleDeleted = await articleService.deleteArticle(id);
     return {
-      message: "Article supprimé avec succès",
-      article,
+      message: "Article supprimé:",
+      article: articleDeleted,
     };
   });

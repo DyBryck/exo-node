@@ -1,9 +1,10 @@
 import * as articleController from "../controllers/articleController.js";
+import { handleAsyncErrors } from "../utils/errors/errorHandler.js";
 
 export const articleRoutes = {
-  "GET /articles": articleController.getAllArticles,
-  "POST /articles": articleController.addArticle,
-  "GET /articles/:id": articleController.getArticleById,
-  "PUT /articles/:id": articleController.updateArticle,
-  "DELETE /articles/:id": articleController.deleteArticle,
+  "GET /articles": handleAsyncErrors(articleController.getAllArticles),
+  "POST /articles": handleAsyncErrors(articleController.addArticle),
+  "GET /articles/:id": handleAsyncErrors(articleController.getArticleById),
+  "PUT /articles/:id": handleAsyncErrors(articleController.updateArticle),
+  "DELETE /articles/:id": handleAsyncErrors(articleController.deleteArticle),
 };

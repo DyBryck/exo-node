@@ -1,4 +1,8 @@
 import { userRepository } from "../repositories/userRepository.js";
+import {
+  NotFoundError,
+  BadRequestError,
+} from "../utils/errors/customErrors.js";
 import { validateUser } from "../utils/errors/validations/userValidation.js";
 
 export const listUsers = async () => {
@@ -14,7 +18,7 @@ export const createUser = async (userData) => {
 export const getUserById = async (id) => {
   const user = await userRepository.getById(id);
   if (!user) {
-    throw { status: 404, message: "Utilisateur non trouvé" };
+    throw new NotFoundError("Utilisateur non trouvé");
   }
   return user;
 };
@@ -22,18 +26,18 @@ export const getUserById = async (id) => {
 export const getUserWithArticles = async (id) => {
   const user = await userRepository.getUserWithArticles(id);
   if (!user) {
-    throw { status: 404, message: "Utilisateur non trouvé" };
+    throw new NotFoundError("Utilisateur non trouvé");
   }
   return user;
 };
 
 export const updateUser = async (id, updatedData) => {
   if (!updatedData.name && !updatedData.email) {
-    throw { status: 400, message: "Aucun champ à mettre à jour" };
+    throw new BadRequestError("Aucun champ à mettre à jour");
   }
   const updatedUser = await userRepository.update(id, updatedData);
   if (!updatedUser) {
-    throw { status: 404, message: "Utilisateur non trouvé" };
+    throw new NotFoundError("Utilisateur non trouvé");
   }
   return updatedUser;
 };
@@ -41,7 +45,7 @@ export const updateUser = async (id, updatedData) => {
 export const deleteUser = async (id) => {
   const user = await userRepository.getById(id);
   if (!user) {
-    throw { status: 404, message: "Utilisateur non trouvé" };
+    throw new NotFoundError("Utilisateur non trouvé");
   }
   await userRepository.delete(id);
   return user;

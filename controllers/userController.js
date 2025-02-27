@@ -7,35 +7,46 @@ export const listUsers = async (req, res) =>
   });
 
 export const createUser = async (req, res) =>
-  handleRequest(
-    req,
-    res,
-    async (body) => {
-      return await userService.createUser(body);
-    },
-    201,
-  );
+  handleRequest(req, res, async (body) => {
+    const userCreated = await userService.createUser(body);
+    return {
+      message: "Utilisateur crée:",
+      user: userCreated,
+    };
+  });
 
 export const getUserById = async (req, res, id) =>
   handleRequest(req, res, async () => {
-    return await userService.getUserById(id);
+    const userFound = await userService.getUserById(id);
+    return {
+      message: "Utilisateur trouvé:",
+      user: userFound,
+    };
   });
 
 export const getUserWithArticles = async (req, res, id) =>
   handleRequest(req, res, async () => {
-    return await userService.getUserWithArticles(id);
+    const userWithArticlesFound = await userService.getUserWithArticles(id);
+    return {
+      message: "Utilisateur et ses articles trouvé:",
+      user: userWithArticlesFound,
+    };
   });
 
 export const updateUser = async (req, res, id) =>
   handleRequest(req, res, async (body) => {
-    return await userService.updateUser(id, body);
+    const userUpdated = await userService.updateUser(id, body);
+    return {
+      message: "Utilisateur modifié:",
+      user: userUpdated,
+    };
   });
 
 export const deleteUser = async (req, res, id) =>
   handleRequest(req, res, async () => {
-    const deletedUser = await userService.deleteUser(id);
+    const userDeleted = await userService.deleteUser(id);
     return {
-      message: "Utilisateur supprimé avec succès",
-      user: deletedUser,
+      message: "Utilisateur supprimé:",
+      user: userDeleted,
     };
   });

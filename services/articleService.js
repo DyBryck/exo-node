@@ -1,4 +1,5 @@
 import { articleRepository } from "../repositories/articleRepository.js";
+import { NotFoundError } from "../utils/errors/customErrors.js";
 import { validateArticle } from "../utils/errors/validations/articleValidation.js";
 
 export const getAllArticles = async () => {
@@ -8,7 +9,7 @@ export const getAllArticles = async () => {
 export const getArticleById = async (id) => {
   const article = await articleRepository.getById(id);
   if (!article) {
-    throw { status: 404, message: "Article non trouvé" };
+    throw new NotFoundError("Article non trouvé");
   }
   return article;
 };
@@ -25,7 +26,7 @@ export const updateArticle = async (id, articleData) => {
 
   const updatedArticle = await articleRepository.update(id, articleData);
   if (!updatedArticle) {
-    throw { status: 404, message: "Article non trouvé" };
+    throw new NotFoundError("Article non trouvé");
   }
   return updatedArticle;
 };
@@ -33,7 +34,7 @@ export const updateArticle = async (id, articleData) => {
 export const deleteArticle = async (id) => {
   const article = await articleRepository.getById(id);
   if (!article) {
-    throw { status: 404, message: "Article non trouvé" };
+    throw new NotFoundError("Article non trouvé");
   }
   await articleRepository.delete(id);
   return article;

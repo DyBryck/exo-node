@@ -1,30 +1,20 @@
-import { articleRoutes } from "./articles.js";
-import { userRoutes } from "./users.js";
-
-const routes = {
-  ...articleRoutes,
-  ...userRoutes,
-};
+import { routesList } from "./routesConfig.js";
 
 export const handleRoute = (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
-  const segments = parsedUrl.pathname.split("/").filter(Boolean);
+  const pathname = parsedUrl.pathname;
   const method = req.method;
-  let routeKey = "";
 
-  if (segments[0] === "articles") {
-    const id = segments[1] ? parseInt(segments[1]) : null;
-    routeKey = id ? `${method} /articles/:id` : `${method} /articles`;
-    if (routes[routeKey]) return routes[routeKey](req, res, id);
-  } else if (segments[0] === "users") {
-    const id = segments[1] ? parseInt(segments[1]) : null;
-    if (segments[2] === "articles" && id) {
-      routeKey = `${method} /users/:id/articles`;
-      if (routes[routeKey]) return routes[routeKey](req, res, id);
-    } else {
-      routeKey = id ? `${method} /users/:id` : `${method} /users`;
-      if (routes[routeKey]) return routes[routeKey](req, res, id);
-    }
+  const route = routesList.find(
+    (r) => r.method === method && r.regex.test(pathname),
+  );
+
+  if (route) {
+    const matches = pathname.match(route.regex);
+
+    const param =
+      matches && matches.length > 1 ? parseInt(matches[1], 10) : null;
+    return route.handler(req, res, param);
   }
 
   res.writeHead(404, { "Content-Type": "application/json" });

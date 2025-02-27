@@ -89,3 +89,14 @@
 2025-02-26T10:40:17.298Z - Utilisateur supprimé: {"id":6,"name":"John","email":"azer@gmail.com","created_at":"2025-02-25 14:32:00"}
 2025-02-26T10:44:04.967Z - Nouvel utilisateur ajouté: {"id":1,"name":"Premier utilisateur","email":"premier@1.com","created_at":"2025-02-26 10:44:04"}
 2025-02-26T10:44:26.847Z - Nouvel utilisateur ajouté: {"id":2,"name":"Deuxième utilisateur","email":"deuxiem@2.com","created_at":"2025-02-26 10:44:26"}
+2025-02-26T19:08:45.120Z - 📌 Article ajouté: {"id":1,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-26 19:08:45"}
+2025-02-26T19:12:36.167Z - Nouvel utilisateur ajouté: {"id":3,"name":"Troisième utilisateur","email":"troisieme@3.com","created_at":"2025-02-26 19:12:36"}
+2025-02-27T07:45:40.140Z - 📌 Article ajouté: {"id":2,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 07:45:40"}
+2025-02-27T08:33:54.779Z - Utilisateur supprimé: {"id":3,"name":"Troisième utilisateur","email":"troisieme@3.com","created_at":"2025-02-26 19:12:36"}
+2025-02-27T08:36:44.028Z - 📌 Article supprimé: {"id":1,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-26 19:08:45"}
+2025-02-27T08:37:07.662Z - 📌 Article ajouté: {"id":3,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 08:37:07"}
+2025-02-27T08:37:12.171Z - 📌 Article supprimé: {"id":3,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 08:37:07"}
+2025-02-27T08:37:38.961Z - 📌 Article supprimé: {"id":2,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 07:45:40"}
+2025-02-27T08:38:25.543Z - 📌 Article ajouté: {"id":4,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 08:38:25"}
+2025-02-27T08:38:29.723Z - 📌 Article supprimé: {"id":4,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 08:38:25"}
+2025-02-27T08:47:20.239Z - 📌 Article ajouté: {"id":5,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-02-27 08:47:20"}
