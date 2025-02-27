@@ -1,4 +1,4 @@
-import { articleRepository } from "../repositories/articleRepository.js";
+import { articleRepository } from "../sql/database.js";
 import { NotFoundError } from "../utils/errors/customErrors.js";
 import { validateArticle } from "../utils/errors/validations/articleValidation.js";
 

@@ -1,7 +1,7 @@
-import { userRepository } from "../repositories/userRepository.js";
+import { userRepository } from "../sql/database.js";
 import {
-  NotFoundError,
   BadRequestError,
+  NotFoundError,
 } from "../utils/errors/customErrors.js";
 import { validateUser } from "../utils/errors/validations/userValidation.js";
 

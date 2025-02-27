@@ -1,22 +1,7 @@
 import { appendLog } from "../utils/logger.js";
-import { connect } from "../utils/utils.js";
+import { Repository } from "./repository.js";
 
-class ArticleRepository {
-  constructor(dbFile) {
-    this.dbFile = dbFile;
-    this.db = null;
-  }
-
-  async connect() {
-    try {
-      this.db = await connect(this.dbFile);
-      console.log("Connexion à la table SQLite Articles réussie !");
-    } catch (error) {
-      console.error("Erreur de connexion à SQLite :", error);
-      throw error;
-    }
-  }
-
+export class ArticleRepository extends Repository {
   async getAll() {
     return await this.db.all("SELECT * FROM articles;");
   }
@@ -63,15 +48,3 @@ class ArticleRepository {
     return article;
   }
 }
-
-const articleRepository = new ArticleRepository("../sql/schema.sqlite");
-
-(async () => {
-  try {
-    await articleRepository.connect();
-  } catch (error) {
-    console.error("Erreur lors de la connexion initiale :", error);
-  }
-})();
-
-export { articleRepository };

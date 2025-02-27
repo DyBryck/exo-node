@@ -1,22 +1,7 @@
 import { appendLog } from "../utils/logger.js";
-import { connect } from "../utils/utils.js";
+import { Repository } from "./repository.js";
 
-class UserDatabase {
-  constructor(dbFile) {
-    this.dbFile = dbFile;
-    this.db = null;
-  }
-
-  async connect() {
-    try {
-      this.db = await connect(this.dbFile);
-      console.log("Connexion à la table SQLite Users réussie !");
-    } catch (error) {
-      console.error("Erreur de connexion à SQLite :", error);
-      throw error;
-    }
-  }
-
+class UserRepository extends Repository {
   async create(user) {
     const { name, email } = user;
     const result = await this.db.run(
@@ -86,14 +71,4 @@ class UserDatabase {
   }
 }
 
-const userRepository = new UserDatabase("../sql/schema.sqlite");
-
-(async () => {
-  try {
-    await userRepository.connect();
-  } catch (error) {
-    console.error("Erreur lors de la connexion initiale :", error);
-  }
-})();
-
-export { userRepository };
+export { UserRepository };
