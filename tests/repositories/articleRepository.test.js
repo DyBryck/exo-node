@@ -14,7 +14,7 @@ const userRepositoryTest = await UserRepository.create(TEST_DB_FILE);
 describe("getAllArticles()", async () => {
   test("should return all articles", async () => {
     const user = await userRepositoryTest.create({
-      name: "User",
+      username: "User",
       email: "user@mail.com",
     });
     const article1 = await articleRepositoryTest.create({
@@ -30,10 +30,7 @@ describe("getAllArticles()", async () => {
 
     const articles = await articleRepositoryTest.getAll();
 
-    assert.ok(
-      articles.length >= 2,
-      "Il devrait y avoir au moins deux articles",
-    );
+    assert.ok(articles.length >= 2, "Il devrait y avoir au moins deux articles");
 
     const foundArticle1 = articles.find((a) => a.id === article1.id);
     const foundArticle2 = articles.find((a) => a.id === article2.id);
@@ -47,7 +44,7 @@ describe("getAllArticles()", async () => {
 describe("getArticleById()", async () => {
   test("should return an article by ID", async () => {
     const user = await userRepositoryTest.create({
-      name: "User Two",
+      username: "User Two",
       email: "user2@mail.com",
     });
     const testArticle = {
@@ -56,9 +53,7 @@ describe("getArticleById()", async () => {
       user_id: 1,
     };
     const createdArticle = await articleRepositoryTest.create(testArticle);
-    const fetchedArticle = await articleRepositoryTest.getById(
-      createdArticle.id,
-    );
+    const fetchedArticle = await articleRepositoryTest.getById(createdArticle.id);
 
     assert.deepStrictEqual(fetchedArticle, createdArticle);
   });
@@ -72,7 +67,7 @@ describe("getArticleById()", async () => {
 describe("createArticle()", async () => {
   test("should create a new article", async () => {
     const user = await userRepositoryTest.create({
-      name: "Test user",
+      username: "Test user",
       email: "user@test.com",
     });
 
@@ -92,7 +87,7 @@ describe("createArticle()", async () => {
 describe("updateArticle()", async () => {
   test("should update an existing article", async () => {
     const user = await userRepositoryTest.create({
-      name: "Test User",
+      username: "Test User",
       email: "testuser@example.com",
     });
 
@@ -108,10 +103,7 @@ describe("updateArticle()", async () => {
       content: "Updated content",
     };
 
-    const updatedArticle = await articleRepositoryTest.update(
-      createdArticle.id,
-      updatedData,
-    );
+    const updatedArticle = await articleRepositoryTest.update(createdArticle.id, updatedData);
 
     assert.strictEqual(updatedArticle.title, updatedData.title);
     assert.strictEqual(updatedArticle.content, updatedData.content);
@@ -130,7 +122,7 @@ describe("updateArticle()", async () => {
 describe("deleteArticle()", async () => {
   test("should delete an existing article", async () => {
     const user = await userRepositoryTest.create({
-      name: "Test User",
+      username: "Test User",
       email: "test@user.com",
     });
 
@@ -140,18 +132,14 @@ describe("deleteArticle()", async () => {
       user_id: user.id,
     });
 
-    const deletedArticle = await articleRepositoryTest.delete(
-      createdArticle.id,
-    );
+    const deletedArticle = await articleRepositoryTest.delete(createdArticle.id);
 
     assert.deepStrictEqual(deletedArticle, createdArticle);
-    const fetchedArticle = await articleRepositoryTest.getById(
-      createdArticle.id,
-    );
+    const fetchedArticle = await articleRepositoryTest.getById(createdArticle.id);
     assert.strictEqual(fetchedArticle, null || undefined);
   });
 
-  test("should return null when trying to delete a non-existing user", async () => {
+  test("should return null when trying to delete a non-existing article", async () => {
     const deletedArticle = await articleRepositoryTest.delete(9999);
     assert.strictEqual(deletedArticle, null);
   });

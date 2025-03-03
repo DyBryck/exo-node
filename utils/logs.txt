@@ -1265,3 +1265,32 @@
 2025-03-03T08:19:01.529Z - 📌 Article ajouté: {"id":7,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-03-03 08:19:01"}
 2025-03-03T08:20:31.358Z - 📌 Article mis à jour: {"id":5,"title":"Nouveau titre","content":"Nouveau contenu","user_id":1,"created_at":"2025-02-27 08:47:20"}
 2025-03-03T08:22:15.110Z - 📌 Article supprimé: {"id":7,"title":"Titre","content":"Contenu","user_id":1,"created_at":"2025-03-03 08:19:01"}
+2025-03-03T12:04:51.571Z - Nouvel utilisateur ajouté: {"username":"User","email":"mail","_id":"67c59ae36d1f0dc0824d78b0","user_id":1,"__v":0}
+2025-03-03T12:07:15.877Z - Nouvel utilisateur ajouté: {"username":"User 2","email":"mail 2","_id":"67c59b735ee816c4e3917598","user_id":2,"__v":0}
+2025-03-03T12:07:55.568Z - Nouvel utilisateur ajouté: {"username":"User 3","email":"mail 3","_id":"67c59b9b5ee816c4e39175ae","user_id":7,"__v":0}
+2025-03-03T12:10:32.251Z - Nouvel utilisateur ajouté: {"username":"User 4","email":"mail@test.com","_id":"67c59c38b084eacf39832df2","user_id":9,"__v":0}
+2025-03-03T12:13:22.208Z - Nouvel utilisateur ajouté: {"username":"User 5","email":"mail@test.com2","_id":"67c59ce2a3ca57ab699d979e","user_id":10,"__v":0}
+2025-03-03T12:13:55.943Z - Nouvel utilisateur ajouté: {"username":"User 6","email":"mail@test.com3","_id":"67c59d03c705a62400b4d354","user_id":13,"__v":0}
+2025-03-03T12:23:49.051Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":1}
+2025-03-03T12:26:35.694Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":0}
+2025-03-03T12:26:45.186Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":0}
+2025-03-03T12:27:33.926Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":0}
+2025-03-03T12:27:46.467Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":0}
+2025-03-03T12:28:05.086Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":0}
+2025-03-03T12:30:25.007Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":0}
+2025-03-03T12:33:41.801Z - Utilisateur supprimé: {"acknowledged":true,"deletedCount":1}
+2025-03-03T12:38:38.274Z - Nouvel utilisateur ajouté: {"username":"User 6","email":"mail@test.com3","_id":"67c5a2ce1c56005058382a9e","user_id":14,"__v":0}
+2025-03-03T12:43:00.265Z - Utilisateur supprimé: {"_id":"67c5a2ce1c56005058382a9e","username":"User 6","email":"mail@test.com3","user_id":14,"__v":0}
+2025-03-03T12:43:09.050Z - Utilisateur supprimé: null
+2025-03-03T13:09:04.297Z - Nouvel utilisateur ajouté: {"username":"User 6","email":"mail@test.com3","_id":"67c5a9f0cf192056999461a2","user_id":16,"__v":0}
+2025-03-03T13:09:21.088Z - Utilisateur supprimé: {"_id":"67c5a9f0cf192056999461a2","username":"User 6","email":"mail@test.com3","user_id":16,"__v":0}
+2025-03-03T13:19:33.757Z - Utilisateur mis à jour: {"_id":"67c59b9b5ee816c4e39175ae","username":"User 3","email":"mail 3","user_id":7,"__v":0}
+2025-03-03T13:21:29.954Z - Utilisateur mis à jour: {"_id":"67c59b9b5ee816c4e39175ae","username":"User 3","email":"mail 3","user_id":7,"__v":0}
+2025-03-03T13:24:30.029Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"User","email":"mail","user_id":1,"__v":0}
+2025-03-03T13:25:01.477Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"User","email":"mail","user_id":7,"__v":0}
+2025-03-03T13:25:18.855Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"Nouveau username","email":"mail","user_id":7,"__v":0}
+2025-03-03T13:26:19.211Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"Nouveau username","email":"newmail@mail.com","user_id":7,"__v":0}
+2025-03-03T13:26:36.948Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"Nouveau username 2","email":"newmail@mail.com","user_id":7,"__v":0}
+2025-03-03T13:30:02.747Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"Nouveau username","email":"newmail@mail.com","user_id":7,"__v":0}
+2025-03-03T13:31:00.385Z - Utilisateur mis à jour: null
+2025-03-03T13:31:02.386Z - Utilisateur mis à jour: {"_id":"67c59ae36d1f0dc0824d78b0","username":"Nouveau username","email":"newmail@mail.com","user_id":7,"__v":0}

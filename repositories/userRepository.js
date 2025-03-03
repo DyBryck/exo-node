@@ -1,71 +1,47 @@
+import User from "../models/users.js";
 import { appendLog } from "../utils/logger.js";
 import { Repository } from "./repository.js";
 
 class UserRepository extends Repository {
   async getAll() {
-    return await this.db.all("SELECT * FROM users;");
+    return await User.find({});
   }
 
   async getById(id) {
-    return await this.db.get("SELECT * FROM users WHERE id = ?", [id]);
+    return await User.findOne({ user_id: id });
   }
 
   async getByIdWithArticles(id) {
     const user = await this.getById(id);
-    if (!user) return null;
 
     const articles = await this.db.all(
       "SELECT * FROM articles WHERE user_id = ?",
       [id],
     );
 
-    user.articles = articles;
-    return user;
+    const userObject = user.toObject();
+    userObject.articles = articles;
+    return userObject;
   }
 
   async create(user) {
-    const { name, email } = user;
-    const result = await this.db.run(
-      "INSERT INTO users (name, email) VALUES (?, ?)",
-      [name, email],
-    );
-    const newUser = await this.getById(result.lastID);
-    appendLog(`Nouvel utilisateur ajouté: ${JSON.stringify(newUser)}`);
+    const { username, email } = user;
+    const newUser = await User.create({ username, email });
+
+    appendLog(`Utilisateur ajouté: ${JSON.stringify(newUser)}`);
     return newUser;
   }
 
   async update(id, updatedUser) {
-    const queryParts = [];
-    const params = [];
-
-    if (updatedUser.name) {
-      queryParts.push("name = ?");
-      params.push(updatedUser.name);
-    }
-
-    if (updatedUser.email) {
-      queryParts.push("email = ?");
-      params.push(updatedUser.email);
-    }
-
-    const query = `UPDATE users SET ${queryParts.join(", ")} WHERE id = ?`;
-    params.push(id);
-
-    const result = await this.db.run(query, params);
-
-    if (result.changes === 0) {
-      throw new Error("Aucun utilisateur modifié.");
-    }
-
-    const user = await this.getById(id);
+    const user = await User.findOneAndUpdate({ user_id: id }, updatedUser, {
+      new: true,
+    });
     appendLog(`Utilisateur mis à jour: ${JSON.stringify(user)}`);
     return user;
   }
 
   async delete(id) {
-    const user = await this.getById(id);
-    if (!user) return null;
-    await this.db.run("DELETE FROM users WHERE id = ?", [id]);
+    const user = await User.findOneAndDelete({ user_id: id });
     appendLog(`Utilisateur supprimé: ${JSON.stringify(user)}`);
     return user;
   }

@@ -23,10 +23,7 @@ describe("UserRepository", async () => {
 
       const users = await userRepositoryTest.getAll();
 
-      assert.ok(
-        users.length >= 2,
-        "Il devrait y avoir au moins deux utilisateurs",
-      );
+      assert.ok(users.length >= 2, "Il devrait y avoir au moins deux utilisateurs");
 
       const foundUser1 = users.find((u) => u.id === user1.id);
       const foundUser2 = users.find((u) => u.id === user2.id);
@@ -66,9 +63,7 @@ describe("UserRepository", async () => {
         ["Article 2", "Content 2", createdUser.id],
       );
 
-      const userWithArticles = await userRepositoryTest.getByIdWithArticles(
-        createdUser.id,
-      );
+      const userWithArticles = await userRepositoryTest.getByIdWithArticles(createdUser.id);
       assert.strictEqual(userWithArticles.articles.length, 2);
       assert.strictEqual(userWithArticles.articles[0].user_id, createdUser.id);
       assert.strictEqual(userWithArticles.articles[1].user_id, createdUser.id);
@@ -95,10 +90,7 @@ describe("UserRepository", async () => {
         name: "Updated User",
         email: "updated@example.com",
       };
-      const updatedUser = await userRepositoryTest.update(
-        createdUser.id,
-        updatedData,
-      );
+      const updatedUser = await userRepositoryTest.update(createdUser.id, updatedData);
 
       assert.strictEqual(updatedUser.name, updatedData.name);
       assert.strictEqual(updatedUser.email, updatedData.email);

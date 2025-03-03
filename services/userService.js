@@ -32,7 +32,7 @@ export const createUser = async (userData) => {
 };
 
 export const updateUser = async (id, updatedData) => {
-  if (!updatedData.name && !updatedData.email) {
+  if (!updatedData.username && !updatedData.email) {
     throw new BadRequestError("Aucun champ à mettre à jour");
   }
   const updatedUser = await userRepository.update(id, updatedData);
@@ -43,10 +43,8 @@ export const updateUser = async (id, updatedData) => {
 };
 
 export const deleteUser = async (id) => {
-  const user = await userRepository.getById(id);
-  if (!user) {
-    throw new NotFoundError("Utilisateur non trouvé");
-  }
-  await userRepository.delete(id);
+  const user = await userRepository.delete(id);
+  if (!user) throw new NotFoundError("Utilisateur non trouvé");
+
   return user;
 };

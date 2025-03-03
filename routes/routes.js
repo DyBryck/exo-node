@@ -5,28 +5,24 @@ import { handleAsyncErrors } from "../utils/errors/errorHandler.js";
 
 const router = express.Router();
 
-// Articles
-router.get("/articles", handleAsyncErrors(articleController.getAllArticles));
-router.get(
-  "/articles/:id",
-  handleAsyncErrors(articleController.getArticleById),
-);
-router.post("/articles", handleAsyncErrors(articleController.createArticle));
-router.put("/articles/:id", handleAsyncErrors(articleController.updateArticle));
-router.delete(
-  "/articles/:id",
-  handleAsyncErrors(articleController.deleteArticle),
-);
+const articlesRouter = express.Router();
 
-// Users
-router.get("/users", handleAsyncErrors(userController.getAllUsers));
-router.get("/users/:id", handleAsyncErrors(userController.getUserById));
-router.get(
-  "/users/:id/articles",
-  handleAsyncErrors(userController.getUserWithArticles),
-);
-router.post("/users", handleAsyncErrors(userController.createUser));
-router.put("/users/:id", handleAsyncErrors(userController.updateUser));
-router.delete("/users/:id", handleAsyncErrors(userController.deleteUser));
+articlesRouter.get("/", handleAsyncErrors(articleController.getAllArticles));
+articlesRouter.get("/:id", handleAsyncErrors(articleController.getArticleById));
+articlesRouter.post("/", handleAsyncErrors(articleController.createArticle));
+articlesRouter.put("/:id", handleAsyncErrors(articleController.updateArticle));
+articlesRouter.delete("/:id", handleAsyncErrors(articleController.deleteArticle));
+
+const usersRouter = express.Router();
+
+usersRouter.get("/", handleAsyncErrors(userController.getAllUsers));
+usersRouter.get("/:id", handleAsyncErrors(userController.getUserById));
+usersRouter.get("/:id/articles", handleAsyncErrors(userController.getUserWithArticles));
+usersRouter.post("/", handleAsyncErrors(userController.createUser));
+usersRouter.put("/:id", handleAsyncErrors(userController.updateUser));
+usersRouter.delete("/:id", handleAsyncErrors(userController.deleteUser));
+
+router.use("/articles", articlesRouter);
+router.use("/users", usersRouter);
 
 export default router;

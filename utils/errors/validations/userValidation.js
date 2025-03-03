@@ -5,7 +5,7 @@ export const validateUser = (user) => {
     throw new Error("Aucun utilisateur fourni.");
   }
 
-  validateName(user.name);
+  validateName(user.username);
 
   validateEmail(user.email);
 
