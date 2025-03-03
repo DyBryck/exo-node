@@ -1,6 +1,6 @@
 import { validateEmail, validateName } from "./filedsValidations/index.js";
 
-export function validateUser(user) {
+export const validateUser = (user) => {
   if (!user) {
     throw new Error("Aucun utilisateur fourni.");
   }
@@ -10,4 +10,4 @@ export function validateUser(user) {
   validateEmail(user.email);
 
   return true;
-}
+};

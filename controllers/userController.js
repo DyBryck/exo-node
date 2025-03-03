@@ -1,23 +1,25 @@
 import * as userService from "../services/userService.js";
 import { handleRequest } from "../utils/controllerUtils.js";
 
-export const findAllUsers = async (req, res) =>
+export const getAllUsers = async (req, res) =>
   handleRequest(req, res, async () => {
-    return await userService.findAllUsers();
+    return await userService.getAllUsers();
   });
 
-export const findUserById = async (req, res, id) =>
+export const getUserById = async (req, res) =>
   handleRequest(req, res, async () => {
-    const userFound = await userService.findUserById(id);
+    const id = req.params.id;
+    const userFound = await userService.getUserById(id);
     return {
       message: "Utilisateur trouvé:",
       user: userFound,
     };
   });
 
-export const findUserWithArticles = async (req, res, id) =>
+export const getUserWithArticles = async (req, res) =>
   handleRequest(req, res, async () => {
-    const userWithArticlesFound = await userService.findUserWithArticles(id);
+    const id = req.params.id;
+    const userWithArticlesFound = await userService.getUserWithArticles(id);
     return {
       message: "Utilisateur et ses articles trouvé:",
       user: userWithArticlesFound,
@@ -33,8 +35,9 @@ export const createUser = async (req, res) =>
     };
   });
 
-export const updateUser = async (req, res, id) =>
+export const updateUser = async (req, res) =>
   handleRequest(req, res, async (body) => {
+    const id = req.params.id;
     const userUpdated = await userService.updateUser(id, body);
     return {
       message: "Utilisateur modifié:",
@@ -42,8 +45,9 @@ export const updateUser = async (req, res, id) =>
     };
   });
 
-export const deleteUser = async (req, res, id) =>
+export const deleteUser = async (req, res) =>
   handleRequest(req, res, async () => {
+    const id = req.params.id;
     const userDeleted = await userService.deleteUser(id);
     return {
       message: "Utilisateur supprimé:",

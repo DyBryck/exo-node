@@ -1,4 +1,4 @@
-export function validateContent(content) {
+export const validateContent = (content) => {
   if (content === undefined) {
     throw new Error("Le contenu est requis");
   } else if (typeof content !== "string") {
@@ -11,4 +11,4 @@ export function validateContent(content) {
     throw new Error("Le contenu doit contenir au maximum 5000 caractères.");
   }
   return true;
-}
+};

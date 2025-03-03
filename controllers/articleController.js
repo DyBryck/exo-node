@@ -1,14 +1,15 @@
 import * as articleService from "../services/articleService.js";
 import { handleRequest } from "../utils/controllerUtils.js";
 
-export const findAllArticles = async (req, res) =>
+export const getAllArticles = async (req, res) =>
   handleRequest(req, res, async () => {
-    return await articleService.findAllArticles();
+    return await articleService.getAllArticles();
   });
 
-export const findArticleById = async (req, res, id) =>
+export const getArticleById = async (req, res) =>
   handleRequest(req, res, async () => {
-    const articleFound = await articleService.findArticleById(id);
+    const id = req.params.id;
+    const articleFound = await articleService.getArticleById(id);
     return {
       message: "Article trouvé:",
       article: articleFound,
@@ -24,8 +25,9 @@ export const createArticle = async (req, res) =>
     };
   });
 
-export const updateArticle = async (req, res, id) =>
+export const updateArticle = async (req, res) =>
   handleRequest(req, res, async (body) => {
+    const id = req.params.id;
     const articleUpdated = await articleService.updateArticle(id, body);
     return {
       message: "Article modifié:",
@@ -33,8 +35,9 @@ export const updateArticle = async (req, res, id) =>
     };
   });
 
-export const deleteArticle = async (req, res, id) =>
+export const deleteArticle = async (req, res) =>
   handleRequest(req, res, async () => {
+    const id = req.params.id;
     const articleDeleted = await articleService.deleteArticle(id);
     return {
       message: "Article supprimé:",

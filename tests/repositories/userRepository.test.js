@@ -10,7 +10,7 @@ beforeEach(() => {
 describe("UserRepository", async () => {
   const userRepositoryTest = await UserRepository.create(TEST_DB_FILE);
 
-  describe("findAll()", async () => {
+  describe("getAll()", async () => {
     test("should return all users", async () => {
       const user1 = await userRepositoryTest.create({
         name: "User One",
@@ -21,7 +21,7 @@ describe("UserRepository", async () => {
         email: "user2@example.com",
       });
 
-      const users = await userRepositoryTest.findAll();
+      const users = await userRepositoryTest.getAll();
 
       assert.ok(
         users.length >= 2,
@@ -31,26 +31,28 @@ describe("UserRepository", async () => {
       const foundUser1 = users.find((u) => u.id === user1.id);
       const foundUser2 = users.find((u) => u.id === user2.id);
       assert.strictEqual(foundUser1.name, user1.name);
+      assert.strictEqual(foundUser1.email, user1.email);
+      assert.strictEqual(foundUser2.name, user2.name);
       assert.strictEqual(foundUser2.email, user2.email);
     });
   });
 
-  describe("findById()", async () => {
+  describe("getById()", async () => {
     test("should return a user by ID", async () => {
       const testUser = { name: "Test User", email: "testuser@example.com" };
       const createdUser = await userRepositoryTest.create(testUser);
-      const fetchedUser = await userRepositoryTest.findById(createdUser.id);
+      const fetchedUser = await userRepositoryTest.getById(createdUser.id);
 
       assert.deepStrictEqual(fetchedUser, createdUser);
     });
 
     test("should return null or undefined for non-existing user", async () => {
-      const user = await userRepositoryTest.findById(9999);
+      const user = await userRepositoryTest.getById(9999);
       assert.strictEqual(user, null || undefined);
     });
   });
 
-  describe("findByIdWithArticles()", async () => {
+  describe("getByIdWithArticles()", async () => {
     test("should return a user with articles", async () => {
       const testUser = { name: "Test User", email: "testuser@example.com" };
       const createdUser = await userRepositoryTest.create(testUser);
@@ -64,7 +66,7 @@ describe("UserRepository", async () => {
         ["Article 2", "Content 2", createdUser.id],
       );
 
-      const userWithArticles = await userRepositoryTest.findByIdWithArticles(
+      const userWithArticles = await userRepositoryTest.getByIdWithArticles(
         createdUser.id,
       );
       assert.strictEqual(userWithArticles.articles.length, 2);
@@ -119,7 +121,7 @@ describe("UserRepository", async () => {
       const deletedUser = await userRepositoryTest.delete(createdUser.id);
 
       assert.deepStrictEqual(deletedUser, createdUser);
-      const fetchedUser = await userRepositoryTest.findById(createdUser.id);
+      const fetchedUser = await userRepositoryTest.getById(createdUser.id);
       assert.strictEqual(fetchedUser, null || undefined);
     });
 

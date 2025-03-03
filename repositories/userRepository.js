@@ -2,16 +2,16 @@ import { appendLog } from "../utils/logger.js";
 import { Repository } from "./repository.js";
 
 class UserRepository extends Repository {
-  async findAll() {
+  async getAll() {
     return await this.db.all("SELECT * FROM users;");
   }
 
-  async findById(id) {
+  async getById(id) {
     return await this.db.get("SELECT * FROM users WHERE id = ?", [id]);
   }
 
-  async findByIdWithArticles(id) {
-    const user = await this.findById(id);
+  async getByIdWithArticles(id) {
+    const user = await this.getById(id);
     if (!user) return null;
 
     const articles = await this.db.all(
@@ -29,7 +29,7 @@ class UserRepository extends Repository {
       "INSERT INTO users (name, email) VALUES (?, ?)",
       [name, email],
     );
-    const newUser = await this.findById(result.lastID);
+    const newUser = await this.getById(result.lastID);
     appendLog(`Nouvel utilisateur ajouté: ${JSON.stringify(newUser)}`);
     return newUser;
   }
@@ -57,13 +57,13 @@ class UserRepository extends Repository {
       throw new Error("Aucun utilisateur modifié.");
     }
 
-    const user = await this.findById(id);
+    const user = await this.getById(id);
     appendLog(`Utilisateur mis à jour: ${JSON.stringify(user)}`);
     return user;
   }
 
   async delete(id) {
-    const user = await this.findById(id);
+    const user = await this.getById(id);
     if (!user) return null;
     await this.db.run("DELETE FROM users WHERE id = ?", [id]);
     appendLog(`Utilisateur supprimé: ${JSON.stringify(user)}`);

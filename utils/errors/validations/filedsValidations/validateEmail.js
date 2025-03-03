@@ -1,4 +1,4 @@
-export function validateEmail(email) {
+export const validateEmail = (email) => {
   if (typeof email !== "string" || email.trim() === "") {
     throw new Error("L'adresse email est requise.");
   }
@@ -10,4 +10,4 @@ export function validateEmail(email) {
     throw new Error("L'adresse email doit contenir au maximum 255 caractères.");
   }
   return true;
-}
+};

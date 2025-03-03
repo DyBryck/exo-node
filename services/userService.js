@@ -5,20 +5,20 @@ import {
 } from "../utils/errors/customErrors.js";
 import { validateUser } from "../utils/errors/validations/userValidation.js";
 
-export const findAllUsers = async () => {
-  return await userRepository.findAll();
+export const getAllUsers = async () => {
+  return await userRepository.getAll();
 };
 
-export const findUserById = async (id) => {
-  const user = await userRepository.findById(id);
+export const getUserById = async (id) => {
+  const user = await userRepository.getById(id);
   if (!user) {
     throw new NotFoundError("Utilisateur non trouvé");
   }
   return user;
 };
 
-export const findUserWithArticles = async (id) => {
-  const user = await userRepository.findByIdWithArticles(id);
+export const getUserWithArticles = async (id) => {
+  const user = await userRepository.getByIdWithArticles(id);
   if (!user) {
     throw new NotFoundError("Utilisateur non trouvé");
   }
@@ -43,7 +43,7 @@ export const updateUser = async (id, updatedData) => {
 };
 
 export const deleteUser = async (id) => {
-  const user = await userRepository.findById(id);
+  const user = await userRepository.getById(id);
   if (!user) {
     throw new NotFoundError("Utilisateur non trouvé");
   }

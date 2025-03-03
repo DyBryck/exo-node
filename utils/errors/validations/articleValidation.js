@@ -1,6 +1,6 @@
 import { validateContent, validateTitle } from "./filedsValidations/index.js";
 
-export function validateArticle(article) {
+export const validateArticle = (article) => {
   if (!article) {
     throw new Error("Aucun article fourni.");
   }
@@ -14,4 +14,4 @@ export function validateArticle(article) {
   }
 
   return true;
-}
+};

@@ -1,4 +1,4 @@
-export function validateName(name) {
+export const validateName = (name) => {
   if (typeof name !== "string" || name.trim() === "") {
     throw new Error("Le nom est requis.");
   }
@@ -6,4 +6,4 @@ export function validateName(name) {
     throw new Error("Le nom doit contenir au maximum 255 caractères.");
   }
   return true;
-}
+};

@@ -20,6 +20,6 @@ export const TEST_DB_FILE = path.join(
   "test.sqlite",
 );
 
-export function resetDatabase() {
+export const resetDatabase = async () => {
   fs.copyFileSync(CLEAN_DB_FILE, TEST_DB_FILE);
-}
+};
