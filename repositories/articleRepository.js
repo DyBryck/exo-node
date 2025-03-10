@@ -26,10 +26,11 @@ export class ArticleRepository extends Repository {
 
   async update(id, article) {
     const { title, content } = article;
-    const result = await this.db.run(
-      "UPDATE articles SET title = ?, content = ? WHERE id = ?",
-      [title, content, id],
-    );
+    const result = await this.db.run("UPDATE articles SET title = ?, content = ? WHERE id = ?", [
+      title,
+      content,
+      id,
+    ]);
     if (result.changes === 0) {
       throw new Error("Aucun article modifié.");
     }
