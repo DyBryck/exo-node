@@ -28,6 +28,7 @@ export const updateArticle = async (id, articleData) => {
   if (!updatedArticle) {
     throw new NotFoundError("Article non trouvé");
   }
+
   return updatedArticle;
 };
 
